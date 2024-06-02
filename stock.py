@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 from yahoo_fin.stock_info import get_data
 
 def fetch_data_from_api(ticker):
-    code = os.environ['APICODE']
+    code = "U0NLQWoX9y_znGknmx81cEK0-BF7wCD9YCNNQCrnzRnVAzFun4J0hw%3D%3D"
     url = f'https://functionapp456.azurewebsites.net/api/pred_{ticker}?code={code}'
     response = requests.get(url)
     if response.status_code == 200:
