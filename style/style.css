@@ -1,0 +1,45 @@
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/*news section */
+.news-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.news-card {
+    background-color: #543310;
+    padding: 20px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    flex: 1 1 calc(33.333% - 20px); 
+}
+
+.news-title {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Dashboard fonts */
+.big2-font {
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.big3-font {
+    font-size: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
