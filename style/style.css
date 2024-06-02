@@ -12,7 +12,10 @@ header {visibility: hidden;}
 }
 
 .news-card {
-    background-color: #543310;
+    /*background-color: #543310;*/
+    border: 2px solid #000;
+    background-color: transparent; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
     border-radius: 5px;
     box-sizing: border-box;
