@@ -26,6 +26,10 @@ header {visibility: hidden;}
     margin-bottom: 40px;
     flex: 1 1 calc(33.333% - 20px); 
 }
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+    transform: translateY(-5px); /* Slightly move the card up */
+}
 
 .news-title {
     font-size: 14px;
