@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 from yahoo_fin.stock_info import get_data
 
 def fetch_data_from_api(ticker):
-    code = "U0NLQWoX9y_znGknmx81cEK0-BF7wCD9YCNNQCrnzRnVAzFun4J0hw%3D%3D"
+    code = os.environ['APICODE']
     url = f'https://functionapp456.azurewebsites.net/api/pred_{ticker}?code={code}'
     response = requests.get(url)
     if response.status_code == 200:
@@ -109,7 +109,6 @@ def get_pricing_data(ticker):
     data = get_data(ticker)
     return data
 
-
 def render_pricing_data(ticker):
     st.write(f"<p class='big2-font'>Pricing data of {ticker}</p>", unsafe_allow_html=True)
     data = get_pricing_data(ticker)
@@ -134,7 +133,6 @@ def render_pricing_data(ticker):
     else:
         st.error("Failed to fetch data. Please check the ticker symbol and try again.")
 
-st.set_page_config(page_title="Stock prices", page_icon="chart_with_upwards_trend", layout="wide")
 def render_dashboard_page():
     st.title("Stock Prediction Dashboard")
 
@@ -145,13 +143,11 @@ def render_dashboard_page():
     local_css("style/style.css")
 
     def predict(ticker, days=30):  
-     with st.spinner("Predicting..."):
-      
-        data = fetch_data_from_api(st.session_state.ticker)
-        if data:
-            show_prediction_table(data,days)
-            plot_data(data)
-
+        with st.spinner("Predicting..."):
+            data = fetch_data_from_api(st.session_state.ticker)
+            if data:
+                show_prediction_table(data, days)
+                plot_data(data)
 
     if 'session_state' not in st.session_state:
         st.session_state.ticker = None
@@ -159,7 +155,7 @@ def render_dashboard_page():
     col1, col2 = st.columns(2)
 
     with col1:
-        ticker_options = ['PAYTM', 'GOOG','AAPL','META','TCS',]
+        ticker_options = ['PAYTM', 'GOOG', 'AAPL', 'META', 'TCS']
         ticker = st.session_state.ticker or ticker_options[0]
         st.session_state.ticker = st.selectbox(label="Choose a ticker", options=ticker_options, help='Please select a ticker from the dropdown.')
 
@@ -167,20 +163,17 @@ def render_dashboard_page():
         submit_button = st.button("Submit")
 
     if submit_button:
-        if st.session_state.ticker not in ticker_options:        
+        if st.session_state.ticker not in ticker_options:
             st.warning("Please select a valid ticker from the dropdown.")
         else:
-            prediction, News, pricing_data= st.tabs(['Prediction', 'Top News', 'Pricing Data'])
+            prediction, News, pricing_data = st.tabs(['Prediction', 'Top News', 'Pricing Data'])
             
             with prediction:
                 st.write(f"<p class='big2-font'>Future 30 Days Forecast for {st.session_state.ticker}</p>", unsafe_allow_html=True)
-                predict(st.session_state.ticker, 30)     
+                predict(st.session_state.ticker, 30)
            
             with News:
                 render_news_section(st.session_state.ticker)
 
             with pricing_data:
                 render_pricing_data(st.session_state.ticker)
-                
-
-            
