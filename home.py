@@ -22,7 +22,7 @@ st.markdown("""
 def render_homepage():
     st.title('Welcome to StockSage')
     st.write("  ")
-    st.write('Your go-to web app for predicting stock prices over the next 30 days. ')
+    st.write('Your go-to web app for predicting stock prices over the next 30 days.')
     st.write("  ")
     st.write("Easy Four Step Tutorial:")
     st.write("1. Go to dashboard from navigation.")
@@ -33,7 +33,7 @@ def render_homepage():
     st.write("  ")
     st.write("  ")
 
-     # Prompt the user to enter a review
+    # Prompt the user to enter a review
     st.header('Feel free to Write a Review')
     review = st.text_area('Enter your review here:', '')
 
@@ -41,7 +41,7 @@ def render_homepage():
     if st.button('Submit Review'):
         if review:
             st.success('Thank you for your review!')
-            # Writting review
+            # Writing review
             with open('./reviews.txt', 'a') as f:
                 f.write(review + '\n')
             review = '' 
@@ -57,7 +57,6 @@ def render_homepage():
     except FileNotFoundError:
         previous_reviews = []
     
-
     # Displaying previous reviews in cards
     for idx, r in enumerate(previous_reviews):
         st.markdown(f'<div class="review-card">{r.strip()}</div>', unsafe_allow_html=True)
